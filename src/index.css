@@ -1,0 +1,151 @@
+@import 'tailwindcss';
+
+:root {
+    --primary: #215c5c;
+}
+
+a {
+    text-decoration: none;
+}
+
+.logo {
+    font-family: "Cookie", cursive;
+}
+
+@layer base {
+    body {
+        @apply bg-slate-200 font-[Inter];
+    }
+}
+
+@layer utilities {
+
+    .navlink>svg {
+        color: #fff;
+        padding: 4px;
+        transition: all .3s ease-in-out;
+    }
+
+    .navlink:hover>svg {
+        transform: translateY(-.6rem);
+        scale: 1.1;
+        color: var(--primary);
+    }
+
+    @media only screen and (min-width:640px) {
+        .navlink:hover>svg {
+            transform: translateY(-.8rem);
+        }
+    }
+
+    .navlink {
+        position: relative;
+    }
+
+    .navlink::after {
+        content: attr(data-label);
+        position: absolute;
+        left: -1rem;
+        background-color: var(--primary);
+        padding: 4px 8px;
+        visibility: hidden;
+        opacity: 0;
+        border-radius: 4px;
+        color: #fff;
+        transition: all .3s ease-in-out;
+    }
+
+    .navlink::after {
+        top: -3rem;
+        font-size: .8rem;
+    }
+
+    @media only screen and (min-width:640px) {
+        .navlink::after {
+            top: -3.8rem;
+            font-size: 1rem;
+        }
+    }
+
+    .navlink:hover::after {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .navlink.active>svg {
+        color: var(--primary);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fadeup {
+    animation: fadeUp .9s ease-out forwards;
+    animation-timeline: view();
+}
+
+.animate-fadeIn {
+    animation: fadeIn .7s ease-out forwards;
+    transition-delay: 500ms;
+}
+
+.btn-secondary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--primary);
+    ;
+    overflow: hidden;
+    z-index: -1;
+    transition: width .4s ease;
+}
+
+.btn-secondary:hover::after {
+    width: 100%;
+}
+
+.card {
+    display: grid;
+    grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+    grid-template-areas: "stack";
+}
+
+.card>img {
+    grid-area: stack;
+    object-fit: cover;
+    place-self: stretch;
+}
+
+.card>figcaption {
+    grid-area: stack;
+    align-self: end;
+    justify-self: stretch;
+    background-color: #27273980;
+    color: #fff;
+    text-align: end;
+    padding: 12px;
+    backdrop-filter: blur(4px);
+}
