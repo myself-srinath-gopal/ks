@@ -1,24 +1,23 @@
 import React from 'react'
-import Navbar from './components/Navbar'
 import { Route, Routes } from 'react-router-dom'
+import Layout from './components/Layout'
 import Home from './pages/Home'
+import Portfolio from './pages/Portfolio'
+import Stories from './pages/Stories'
 import Gallery from './pages/Gallery'
-import Logo from './components/Logo'
+import Contact from './pages/Contact'
 
 const App = () => {
   return (
-    <>
-      <Logo />
-      <div className="flex flex-col min-h-screen">
-        <Navbar />
-        <main className="grow">
-          <Routes>
-            <Route index element={<Home />} />
-            <Route path='/gallery' element={<Gallery />} />
-          </Routes>
-        </main>
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path='/portfolio' element={<Portfolio />} />
+        <Route path='/stories' element={<Stories />} />
+        <Route path='/gallery' element={<Gallery />} />
+        <Route path='/contact-us' element={<Contact />} />
+      </Route>
+    </Routes>
   )
 }
 

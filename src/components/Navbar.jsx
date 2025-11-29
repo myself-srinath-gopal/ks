@@ -1,33 +1,70 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Menu, X } from 'lucide-react'
+import React, { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const Navbar = () => {
+
+    const navLinks = [
+        { name: 'Home', path: '/' },
+        { name: 'Portfolio', path: '/portfolio' },
+        { name: 'Gallery', path: '/gallery' },
+        { name: 'Stories', path: '/stories' },
+        { name: 'Contact', path: '/contact-us' },
+    ]
+    const { pathname } = useLocation()
+    const [isOpen, setIsOpen] = useState(false)
+
     return (
-        <header className='w-xs px-1.5 py-3 sm:px-2.5 sm:py-5 fixed bottom-4 left-1/2 transform -translate-x-1/2 rounded-full backdrop-blur-[2px] bg-black/10 z-10'>
-            <nav>
-                <ul className='flex items-center justify-evenly sm:justify-around'>
-                    <li>
-                        <NavLink data-label='Home' className='navlink' to={"/"} title='Home'>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-house-icon lucide-house w-7 h-7 sm:w-9 sm:h-9"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink data-label='Gallery' className='navlink' to={"/gallery"} title='Gallery'>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-gallery-vertical-icon lucide-gallery-vertical w-7 h-7 sm:w-9 sm:h-9"><path d="M3 2h18" /><rect width="18" height="12" x="3" y="6" rx="2" /><path d="M3 22h18" /></svg>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink data-label='Blogs' className='navlink' to={"/blogs"} title='Blogs'>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-message-square-text-icon lucide-message-square-text w-7 h-7 sm:w-9 sm:h-9"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /><path d="M7 11h10" /><path d="M7 15h6" /><path d="M7 7h8" /></svg>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink data-label='Contact' className='navlink' to={"/contact"} title='Contact'>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone-forwarded-icon lucide-phone-forwarded w-7 h-7 sm:w-9 sm:h-9"><path d="M14 6h8" /><path d="m18 2 4 4-4 4" /><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></svg>
-                        </NavLink>
-                    </li>
-                </ul>
+        <header className='w-full bg-[#fefefe]/50 flex items-center justify-between px-6 py-5 fixed top-0 z-20 backdrop-blur-xl shadow-sm'>
+            <Link to={"/"} className="flex items-center gap-2">
+                <img src="\assets\logo.svg" alt="" className='w-6 h-6' />
+                <span className='text-base sm:text-xl font-medium'>Kalaimagal's Studio</span>
+            </Link>
+            <nav className='hidden md:flex items-center gap-6'>
+                {
+                    navLinks.map((link) => (
+                        <Link className={`text-sm font-medium tracking-wide uppercase hover:text-neutral-500 transition-colors relative ${pathname === link.path ? 'text-neutral-900' : 'text-neutral-600'}`} data-label={link.name} key={link.name} to={link.path} title={link.name}>
+                            {link.name}
+                            {pathname === link.path && (
+                                <motion.div
+                                    layoutId='underline'
+                                    className='absolute left-0 -bottom-1 w-full h-px bg-neutral-900'
+                                />
+                            )}
+                        </Link>
+                    ))
+                }
             </nav>
+            <button onClick={() => setIsOpen(!isOpen)} className='block md:hidden relative z-50 cursor-pointer'>
+                {isOpen ? <X className='w-7 h-7' /> : <Menu className='w-7 h-7' />}
+            </button>
+            <AnimatePresence>
+                {
+                    isOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, x: '100%' }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: '100%' }}
+                            transition={{ type: 'tween', duration: 0.3 }}
+                            className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center md:hidden w-full h-screen"
+                        >
+                            <div className="flex flex-col gap-8 text-center">
+                                {navLinks.map((link) => (
+                                    <Link
+                                        onClick={() => setIsOpen(!isOpen)}
+                                        key={link.path}
+                                        to={link.path}
+                                        className="text-2xl font-light uppercase tracking-widest text-neutral-900 hover:text-neutral-500 transition-colors"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )
+                }
+            </AnimatePresence>
         </header>
     )
 }
