@@ -10,6 +10,7 @@ const Navbar = () => {
         { name: 'Portfolio', path: '/portfolio' },
         { name: 'Gallery', path: '/gallery' },
         { name: 'Stories', path: '/stories' },
+        { name: 'Blogs', path: '/blogs' },
         { name: 'Contact', path: '/contact-us' },
     ]
     const { pathname } = useLocation()
@@ -21,7 +22,7 @@ const Navbar = () => {
                 <img src="\assets\logo.svg" alt="" className='w-6 h-6' />
                 <span className='text-base sm:text-xl font-medium'>Kalaimagal's Studio</span>
             </Link>
-            <nav className='hidden md:flex items-center gap-6'>
+            <nav className='hidden md:flex items-center gap-4 lg:gap-6'>
                 {
                     navLinks.map((link) => (
                         <Link className={`text-sm font-medium tracking-wide uppercase hover:text-neutral-500 transition-colors relative ${pathname === link.path ? 'text-neutral-900' : 'text-neutral-600'}`} data-label={link.name} key={link.name} to={link.path} title={link.name}>
