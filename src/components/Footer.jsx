@@ -25,8 +25,8 @@ const Footer = () => {
                 <div>
                     <h4 className="text-white font-medium mb-4 uppercase text-sm tracking-wide">Contact</h4>
                     <ul className="space-y-2 text-sm">
-                        <li>123 Photography Lane</li>
-                        <li>New York, NY 10012</li>
+                        <li>789 Main Street</li>
+                        <li>Pethappampatti 642126</li>
                         <li>info@kalaimagalsstudio.com</li>
                         <li>+91 9876543210</li>
                     </ul>

@@ -8,6 +8,10 @@ a {
     text-decoration: none;
 }
 
+a:focus {
+    outline: none;
+}
+
 .logo {
     font-family: "Cookie", cursive;
 }
@@ -16,4 +20,38 @@ a {
     body {
         @apply font-[Inter];
     }
+}
+
+.navtoggler__line::before,
+.navtoggler__line::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 20px;
+    height: 1px;
+    background-color: black;
+    transform: rotate(0);
+    transition: all 0.3s ease-in-out;
+}
+
+.navtoggler__line::before {
+    top: -8px;
+}
+
+.navtoggler__line::after {
+    top: 8px;
+}
+
+.navtoggler__line.open {
+    background-color: transparent;
+}
+
+.navtoggler__line.open::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.navtoggler__line.open::after {
+    top: 0;
+    transform: rotate(-45deg);
 }

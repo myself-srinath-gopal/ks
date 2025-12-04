@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 
 const allImages = [
     { id: 1, src: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800', category: 'Wedding' },
@@ -45,29 +44,19 @@ const Gallery = () => {
                     </button>
                 ))}
             </div>
-
-            <motion.div
-                layout
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-            >
-                {filteredImages.map((img) => (
-                    <motion.div
-                        layout
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        key={img.id}
-                        className="relative group overflow-hidden aspect-3/4"
-                    >
-                        <img
-                            src={img.src}
-                            alt={`Gallery ${img.id}`}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                    </motion.div>
-                ))}
-            </motion.div>
+            <div className="min-[400px]:columns-2 md:columns-3 gap-3">
+                {
+                    filteredImages.map(img => (
+                        <div key={img?.id} className='relative mb-2.5 group'>
+                            <img
+                                src={img?.src}
+                                className={`w-full object-cover`}
+                            />
+                            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     );
 };
