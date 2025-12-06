@@ -4,22 +4,16 @@
     --primary: #215c5c;
 }
 
+body {
+    font-family: "Space Grotesk", serif;
+}
+
 a {
     text-decoration: none;
 }
 
 a:focus {
     outline: none;
-}
-
-.logo {
-    font-family: "Cookie", cursive;
-}
-
-@layer base {
-    body {
-        @apply font-[Inter];
-    }
 }
 
 .navtoggler__line::before,

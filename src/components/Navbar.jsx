@@ -8,8 +8,7 @@ const Navbar = () => {
     const navLinks = [
         { name: 'Home', path: '/' },
         { name: 'Portfolio', path: '/portfolio' },
-        { name: 'Stories', path: '/stories' },
-        { name: 'Blogs', path: '/blogs' },
+        { name: 'About', path: '/about-us' },
         { name: 'Contact', path: '/contact-us' },
     ]
     const { pathname } = useLocation()
@@ -60,11 +59,6 @@ const Navbar = () => {
             </nav>
             <button onClick={handleNavToggle} className='w-5 h-5 block md:hidden relative z-50 cursor-pointer navtoggler'>
                 <span className='navtoggler__line h-px w-5 bg-neutral-900 absolute right-0 top-1/2 -translate-y-1/2'></span>
-                {/* {
-                    isOpen ?
-                        <X className='w-7 h-7' /> :
-                        <Menu className='w-7 h-7' />
-                } */}
             </button>
             <AnimatePresence>
                 {

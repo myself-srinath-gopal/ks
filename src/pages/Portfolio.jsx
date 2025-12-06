@@ -4,103 +4,47 @@ import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const categories = [
-    { key: 'all', value: 'All' },
-    { key: 'wedding', value: 'Wedding' },
-    { key: 'portrait', value: 'Portrait' },
-    { key: 'nature', value: 'Nature' },
-    { key: 'birthday+party', value: 'Birthday' },
-    { key: 'maternity', value: 'Maternity' },
+    {
+        title: 'Weddings',
+        image: 'https://images.unsplash.com/photo-1740418762511-b3927603599a?w=900&auto=format&fit=crop',
+        desc: 'Capturing love in its purest form.',
+    },
+    {
+        title: 'Portraits',
+        image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=800&auto=format&fit=crop',
+        desc: 'Revealing the soul behind the face.',
+    },
+    {
+        title: 'Commercial',
+        image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop',
+        desc: 'Elevating brands through visual storytelling.',
+    },
+    {
+        title: 'Family',
+        image: 'https://images.unsplash.com/photo-1756982784804-8b0e9d4cab86?w=900&auto=format&fit=crop',
+        desc: 'Capturing family moments that last a lifetime.',
+    },
+    {
+        title: 'Maternity',
+        image: 'https://images.unsplash.com/photo-1667357307700-e91503af11c1?w=900&auto=format&fit=crop',
+        desc: 'Celebrating motherhood with heartfelt images.',
+    },
+    {
+        title: 'Babies',
+        image: 'https://images.unsplash.com/photo-1656634064343-39ff5269d651?w=900&auto=format&fit=crop',
+        desc: 'Capturing the innocence of newborn babies.',
+    }
 ];
 
-// const portfolioItems = [
-//     {
-//         id: 1,
-//         title: "The Vows",
-//         category: "Wedding",
-//         year: "2024",
-//         src: "https://images.unsplash.com/photo-1511285560982-1351cdeb9821?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-//     },
-//     {
-//         id: 2,
-//         title: "Golden Silence",
-//         category: "Portrait",
-//         year: "2023",
-//         src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-//     },
-//     {
-//         id: 3,
-//         title: "Misty Peaks",
-//         category: "Nature",
-//         year: "2023",
-//         src: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-//     },
-//     {
-//         id: 10,
-//         title: "Urban Solitude",
-//         category: "Editorial",
-//         year: "2024",
-//         src: "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-//     },
-//     {
-//         id: 4,
-//         title: "Concrete Jungle",
-//         category: "Urban",
-//         year: "2024",
-//         src: "https://images.unsplash.com/photo-1449824913929-6513b6c6af63?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-//     },
-//     {
-//         id: 5,
-//         title: "Ethereal Bride",
-//         category: "Wedding",
-//         year: "2023",
-//         src: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-//     },
-//     {
-//         id: 6,
-//         title: "Raw Emotion",
-//         category: "Portrait",
-//         year: "2023",
-//         src: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-//     },
-//     {
-//         id: 7,
-//         title: "Alpine Mirror",
-//         category: "Nature",
-//         year: "2022",
-//         src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-//     },
-//     {
-//         id: 8,
-//         title: "Night Lights",
-//         category: "Urban",
-//         year: "2023",
-//         src: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-//     },
-//     {
-//         id: 9,
-//         title: "First Dance",
-//         category: "Wedding",
-//         year: "2023",
-//         src: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-//     },
-//     {
-//         id: 11,
-//         title: "Studio Light",
-//         category: "Portrait",
-//         year: "2024",
-//         src: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-//     },
-// ];
 
 const Gallery = () => {
-    const [activeCategory, setActiveCategory] = useState("all");
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
-        fetch(`https://pixabay.com/api/?key=53523013-33a4bce35e382dabf0ec8c7d8&q=portrait&image_type=photo&${activeCategory !== 'all' && 'q=' + activeCategory}`, {
+        fetch(`https://pixabay.com/api/?key=53523013-33a4bce35e382dabf0ec8c7d8&q=portrait&image_type=photo`, {
             method: 'GET',
         }).then((res) => res.json()).then((data) => setProjects(data?.hits));
-    }, [activeCategory])
+    }, [])
 
     // console.log(projects)
 
@@ -125,68 +69,36 @@ const Gallery = () => {
                             A curation of moments that define our aesthetic. We believe in the beauty of simplicity and the power of a single frame.
                         </p>
                     </div>
-
-                    {/* Minimal Filter */}
-                    <div className="mt-12 lg:mt-0">
-                        <div className="flex flex-wrap gap-x-8 gap-y-4">
-                            {categories.map((cat) => (
-                                <button
-                                    key={cat.key}
-                                    onClick={() => setActiveCategory(cat.key)}
-                                    className={`text-sm tracking-widest uppercase transition-all duration-300 relative pb-1 ${activeCategory === cat.key
-                                        ? 'text-black font-medium'
-                                        : 'text-gray-400 hover:text-gray-600'
-                                        }`}
-                                >
-                                    {cat.value}
-                                    {activeCategory === cat.key && (
-                                        <motion.div
-                                            key={cat.key}
-                                            layoutId="underline"
-                                            className="absolute bottom-0 left-0 right-0 h-px bg-black"
-                                        />
-                                    )}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
                 </motion.div>
 
                 {/* Masonry Grid */}
                 <motion.div
                     layout
-                    className="columns-1 md:columns-2 lg:columns-3 gap-4"
+                    className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-12"
                 >
-                    <AnimatePresence>
-                        {projects.map((item) => (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {categories.map((cat, idx) => (
                             <motion.div
-                                layout
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.5 }}
-                                key={item.id}
-                                className="break-inside-avoid group cursor-pointer mb-4"
+                                initial={{ opacity: 0, y: 100 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-10%" }}
+                                transition={{ delay: idx * 0.1, duration: 0.8, ease: "easeOut" }}
+                                key={idx}
+                                className="group"
                             >
-                                <Link to={`/portfolio/${item.id}`}>
-                                    <div className="relative overflow-hidden bg-gray-100 mb-4">
-                                        <img
-                                            src={item.webformatURL}
-                                            className="w-full h-auto object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
-                                        />
-
-                                        {/* Hover Overlay */}
-                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                            {/* <div className="bg-white/90 backdrop-blur-sm p-4 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                            <ArrowUpRight className="w-6 h-6 text-black" />
-                                        </div> */}
-                                        </div>
-                                    </div>
-                                </Link>
-
+                                <div className="overflow-hidden mb-6 relative h-[400px]">
+                                    <img
+                                        src={cat.image}
+                                        alt={cat.title}
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                                </div>
+                                <h3 className="text-xl font-bold mb-2">{cat.title}</h3>
+                                <p className="text-neutral-400 text-sm">{cat.desc}</p>
                             </motion.div>
                         ))}
-                    </AnimatePresence>
+                    </div>
                 </motion.div>
 
                 {/* Footer Note */}
